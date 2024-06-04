@@ -1,0 +1,14 @@
+{
+  "name": "hopscriptjs",
+  "version": "1.0.0",
+  "description": "HopScript built in JS",
+  "main": "index.js",
+  "scripts": {
+    "hop": "npx ts-node main.ts"
+  },
+  "author": "BunnyGamez",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
