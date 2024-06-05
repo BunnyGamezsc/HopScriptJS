@@ -1,4 +1,5 @@
 import Parser from "./frontend/parser"
+import { evaluate } from "./runtime/interpreter";
 
 
 repl();
@@ -8,7 +9,7 @@ repl();
 async function repl(){
     let SOURCE = 
     `
-    10 + 5 *3
+    10 + 5
 
 
 
@@ -22,5 +23,8 @@ async function repl(){
 
         const program = parser.buildAST(input);
         console.log(program)
+
+        const result = evaluate(program)
+        console.log(result);
 }
 

@@ -1,6 +1,7 @@
 // var x = 45
 
 export enum TokenType {
+    Null,
     Identifier,
 
     Integer,
@@ -16,8 +17,9 @@ export enum TokenType {
 
 
 const KEYWORDS: Record<string,TokenType> = {
-    "var": TokenType.Variable,
-    "con": TokenType.Constant
+    var: TokenType.Variable,
+    con: TokenType.Constant,
+    null: TokenType.Null
 }
 
 
@@ -78,10 +80,10 @@ export function tokenize (srcCode: string): Token[] {
                 // check for reserved keywords
 
                 const reserved = KEYWORDS[id];
-                if (reserved == undefined){
-                    tokens.push(token(id, TokenType.Identifier))
-                }else{
+                if (typeof reserved == 'number'){
                     tokens.push(token(id, reserved))
+                }else{
+                    tokens.push(token(id, TokenType.Identifier))
                 }
 
 

@@ -2,6 +2,7 @@ export type NodeType =
 | "Program" 
 | "Declaration"
 | "Integer"
+| "Null"
 | "Identifier"
 | "Float"
 | "BinaryExpr"
@@ -27,7 +28,11 @@ export interface Identifier extends Expression {
 
 export interface Integer extends Expression {
     kind: "Integer";
-    value: Number
+    value: number;
+}
+export interface Null extends Expression {
+    kind: "Null";
+    value: "null";
 }
 
 export interface Float extends Expression {

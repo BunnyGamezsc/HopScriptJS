@@ -6,6 +6,7 @@ import {
     Integer,
     Float,
     Identifier,
+    Null,
 } from "./ast";
 import { tokenize, Token, TokenType } from "./lexer";
 
@@ -27,7 +28,7 @@ export default class Parser {
 
     private expect(type: TokenType, err: any){
         const prev = this.tokens.shift() as Token;
-        if (!prev || prev.type === type){
+        if (!prev || prev.type != type){
             console.error("Parser Error:\n", err, prev, " - Expecting: ", type)
         }
         return prev
@@ -108,7 +109,9 @@ export default class Parser {
                 return { kind: "Integer", value: parseInt(this.next().value) } as Integer;
             case TokenType.Float:
                 return { kind: "Float", value: parseFloat(this.next().value) } as Float;
-            
+            case TokenType.Null:
+                this.next();
+                return { kind: "Null", value: "null"} as Null;
             case TokenType.OpenParen:
                 this.next();
                 const value = this.parseExpression();
