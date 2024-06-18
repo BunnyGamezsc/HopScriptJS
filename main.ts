@@ -9,7 +9,8 @@ repl();
 async function repl(){
     let SOURCE = 
     `
-    10 + 5
+    55 * (289/17 + 22)
+    
 
 
 
@@ -22,7 +23,7 @@ async function repl(){
         }
 
         const program = parser.buildAST(input);
-        console.log(program)
+        // console.log(program)
 
         const result = evaluate(program)
         console.log(result);

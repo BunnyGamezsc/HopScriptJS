@@ -1,8 +1,8 @@
 import { ValueType, RuntimeVal, IntegerVal, NullVal, FloatVal } from './values';
-import { BinaryExpr, Integer, NodeType, Program, Statement } from '../frontend/ast';
+import { BinaryExpr, Float, Integer, NodeType, Program, Statement } from '../frontend/ast';
 
 
-function evaluateNumericBinaryExpr(lhs: IntegerVal | FloatVal, rhs: IntegerVal | FloatVal, operator: string): NumberVal {
+function evaluateNumericBinaryExpr(lhs: IntegerVal | FloatVal, rhs: IntegerVal | FloatVal, operator: string): IntegerVal | FloatVal {
     let result = 0;
     if (operator == "+"){
         result = lhs.value + rhs.value
@@ -62,6 +62,8 @@ export function evaluate(astNode: Statement): RuntimeVal {
     switch (astNode.kind) {
         case "Integer":
             return { value: (astNode as Integer).value, type: "integer" } as IntegerVal
+            case "Float":
+            return { value: (astNode as Float).value, type: "float" } as FloatVal
         case "Null":
             return { value: "null", type: "null" } as NullVal;
         case "BinaryExpr":
